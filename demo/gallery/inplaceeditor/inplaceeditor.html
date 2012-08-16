@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Brix InplaceEditor Demo</title>
+        <link rel="stylesheet" href="../../../dist/brix-min.css"/>
+        <script>
+            // html5
+            if (!+[1,]) {
+                (function() {
+                    var tags = [
+                        'article', 'aside', 'details', 'figcaption',
+                        'figure', 'footer', 'header', 'hgroup',
+                        'menu', 'nav', 'section', 'summary',
+                        'time', 'mark', 'audio', 'video'],
+                            i = 0, len = tags.length;
+                    for (; i < len; i++) document.createElement(tags[i]);
+                })();
+            }
+        </script>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+        <script src="../../config.js"></script>
+        <style type="text/css">
+            .url_list_con{
+                zoom:1;
+                padding-top：5px;
+            }
+
+            .url_list{
+                zoom:1;
+            }
+
+            .url_list .item,.url_list .item_add{
+                float: left;
+                margin: 5px 5px 5px 0;
+                position: relative;
+                vertical-align: middle;
+                width: 131px;
+                border: 1px dotted transparent;
+                *border-color:#fff;
+                list-style: none;
+            }
+
+            .url_list .item .s_name{
+                float: left;
+                outline: medium none;
+                text-decoration: none;
+            }
+            .url_list .item img{
+                float: left;
+                margin-top: 1px;
+                vertical-align: middle;
+                padding-bottom: 1px;
+            }
+
+            .url_list .item .s_name span{
+                display: inline-block;
+                text-align: left;
+                float: left;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+                width:91px;
+                cursor: pointer;
+                padding-left: 3px;
+                color: #2b7bad;
+            }
+
+            .url_list .item .icon-edit,.url_list .item .icon-del{
+                display: none;
+            }
+
+
+            .url_list .item_edit .icon-edit,.url_list .item_edit .icon-del{
+                display: block;
+            }
+            .url_list .item_edit .s_name span{
+                width:71px;
+            }
+        </style>
+    </head>
+    <body style="margin:0px;padding-top:40px">
+        <div class="container">
+            <div class="url_list_con">
+                    <ul class="url_list ks-clear url_list_edit inplaceeditor">
+
+                    </ul>
+                </div>
+        </div>
+		<!--brix begin-->
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/inplaceeditor/,cookie,json", function(S, InplaceEditor, COOKIE, JSON) {
+                    var url_listNode = S.one('.url_list'),url_add_conNode = S.one('.url_add_con'),inplaceeditor = new InplaceEditor(),editPoup;
+                    inplaceeditor.on('valueChange',function(e){
+                        var inputNode = inplaceeditor.get('el').one('input');
+                        S.one('#item_' + inputNode.attr('data-sid')).one('span').html(e.value);
+                        saveData();
+                    });
+                    var navData = JSON.parse(COOKIE.get('userNavigationData')) || [{
+                        name: '淘网址',
+                        url: 'http://www.tao123.com'
+                    }, {
+                        name: '淘宝网',
+                        url: 'http://www.taobao.com'
+                    },{
+                        name: '新浪',
+                        url: 'http://www.sina.com.cn/'
+                    },  {
+                        name: '优酷网',
+                        url: 'http://www.youku.com'
+                    }, {
+                        name: '4399',
+                        url: 'http://www.4399.com'
+                    }];
+
+                    url_listNode.empty();
+
+                    for (var i = 0; i < navData.length; i++) {
+                        var data = navData[i];
+                        var id = S.guid();
+                        url_listNode.append(['<li class="item" id="item_' + id + '" data-sid="' + id + '">', '<a class="s_name" target="_blank" href="' + data.url + '">', '<img width="16" height="16" src="http://api.tao123.com/collectsite/ico.php?domain_url=' + data.url + '" >', '<span>' + data.name + '</span>', '</a>', '<a class="iconfont icon-edit" href="#">&#372</a>', '<a class="iconfont icon-del" href="#">&#223</a>', '</li>'].join(''));
+                    }
+
+                    var fnHalt = function(e) {
+                            e.preventDefault();
+                        };
+                    var saveData = function(){
+                        //将数据保存到cookie
+                        var datas = [];
+                        url_listNode.all('.item').each(function(el) {
+                            datas.push({
+                                name: el.one('span').html(),
+                                url: el.one('.s_name').attr('href')
+                            });
+                        });
+                        if (datas.length > 0) {
+                            COOKIE.remove('userNavigationData');
+                            COOKIE.set('userNavigationData', JSON.stringify(datas), 1000);
+                        } else {
+                            COOKIE.remove('userNavigationData');
+                        }
+                    };
+
+
+                    url_listNode.delegate('mouseenter','.item',function(e){
+                        S.one(e.currentTarget).addClass('item_edit');
+                    });
+                    url_listNode.delegate('mouseleave','.item',function(e){
+                        S.one(e.currentTarget).removeClass('item_edit');
+                    });
+
+
+                    /*删除*/
+                    url_listNode.delegate('mousedown', '.icon-del', fnHalt);
+                    url_listNode.delegate('click', '.icon-del', function(e) {
+                        e.preventDefault();
+                        var url = S.one(e.currentTarget).parent('.item').one('.s_name').attr('href');
+                        S.one(e.currentTarget).parent('.item').remove();
+                        for (var i = 0; i < navData.length; i++) {
+                            var data = navData[i];
+                            if (data.url == url) { //是否需要做复杂的验证
+                                navData.splice(i);
+                                break;
+                            }
+                        };
+                        saveData();
+                    });
+
+                    /*编辑*/
+                    url_listNode.delegate('mousedown', '.icon-edit', fnHalt);
+                    url_listNode.delegate('click', '.icon-edit', function(e) {
+                        e.preventDefault();
+                        var currentNode = S.one(e.currentTarget);
+                        if(!inplaceeditor.get('rendered')){
+                            inplaceeditor.render();
+                            editPoup = inplaceeditor.get('el');
+                        }
+
+                        var itemNode = currentNode.parent('.item');
+                        var offset = itemNode.offset();
+                        var inputNode = editPoup.one('input');
+                        inputNode.attr('data-sid', itemNode.attr('data-sid'));
+                        inplaceeditor.show(offset.left,offset.top - 1,currentNode.prev().one('span').html());
+                    });
+                });
+            });
+        </script>
+        <!--brix end-->
+    </body>
+</html>
