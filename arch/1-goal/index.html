@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Brix &mdash; UX</title>
-  <!--[if lt IE 9]> <script>
+<title>Brix &mdash; UX</title>
+<!--[if lt IE 9]>
+<script>
   // html5
   (function() {
       var tags = [
@@ -14,138 +15,63 @@
               i = 0, len = tags.length;
       for (; i < len; i++) document.createElement(tags[i]);
   })();
-</script> <![endif]-->
-  <link rel="stylesheet" type="text/css" href="/brix/assets/css/post.css">
+</script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/brix/dist/brix-min.css">
+<link rel="stylesheet" type="text/css" href="/brix/assets/css/post.css">
 </head>
 <body>
+  <div id="site-nav">
+  <nav class="container">
+    <a href="/brix/">首页 Home</a>
+    <a href="/brix/#tutorial">入门 Tutorials</a>
+    <a href="/brix/#doc">文档 Doc</a>
+    <a href="/brix/style">样式 Style</a>
+    <a href="/brix/#about">关于 About</a>
+  </nav>
+</div>
   <aside id="aside">
   <div id="logo">
     <a href="/brix/">Brix</a>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <section>
-  <h3>架构</h3>
-  
-  <ul class="entries">
-
-  <li><a href="/brix/arch/1-goal">BRIX 组件架构（一）</a></li>
-
-  <li><a href="/brix/arch/2-reporting-system-modulization">BRIX 组件架构（二）</a></li>
-
-  <li><a href="/brix/arch/3-tab-and-tab-configer">BRIX 组件架构（三）</a></li>
-
-  <li><a href="/brix/arch/4-sub-modules-and-data-structure">BRIX 组件架构（四）</a></li>
-
+    <h3>Arch</h3>
+    
+    <ul class="entries">
+<li><a href="/brix/arch/1-goal">Brix 组件架构（一）</a></li><li><a href="/brix/arch/2-reporting-system-modulization">Brix 组件架构（二）</a></li><li><a href="/brix/arch/3-tab-and-tab-configer">Brix 组件架构（三）</a></li><li><a href="/brix/arch/4-sub-modules-and-data-structure">Brix 组件架构（四）</a></li>
 </ul>
-</section>
-<section>
-  <h3>Meta</h3>
+  </section>
   
-  <ul class="entries">
-
-  <li><a href="/brix/meta/estrap">HTML/CSS 书写规范</a></li>
-
-  <li><a href="/brix/meta/gallery">组件开发规范</a></li>
-
-  <li><a href="/brix/meta/gallery-doc-sample">组件文档示例</a></li>
-
-</ul>
-</section>
-<section>
-  <h3>Core</h3>
   
-  <ul class="entries">
-
-  <li><a href="/brix/core/brick">Brick</a></li>
-
-  <li><a href="/brix/core/chunk">Chunk</a></li>
-
-  <li><a href="/brix/core/dataset">Dataset</a></li>
-
-  <li><a href="/brix/core/pagelet">Pagelet</a></li>
-
-  <li><a href="/brix/core/tmpler">Tmpler</a></li>
-
-</ul>
-</section>
-<section>
-  <h3>Style</h3>
   
-  <ul class="entries">
-
-  <li><a href="/brix/style/scaffolding">Scaffolding</a></li>
-
-  <li><a href="/brix/style/type">Type</a></li>
-
-  <li><a href="/brix/style/grid">Grid</a></li>
-
-  <li><a href="/brix/style/forms">Forms</a></li>
-
-  <li><a href="/brix/style/buttons">Buttons</a></li>
-
-  <li><a href="/brix/style/flowsteps">flowsteps</a></li>
-
-  <li><a href="/brix/style/tables">tables</a></li>
-
-  <li><a href="/brix/style/tags">tags</a></li>
-
-</ul>
-</section>
-<section>
-  <h3>Gallery</h3>
   
-  <ul class="entries">
-
-  <li><a href="/brix/gallery/breadcrumbs">Breadcrumbs</a></li>
-
-  <li><a href="/brix/gallery/calendar">Calendar</a></li>
-
-  <li><a href="/brix/gallery/colorpicker">ColorPicker</a></li>
-
-  <li><a href="/brix/gallery/dialog">Dialog</a></li>
-
-  <li><a href="/brix/gallery/dropdown">Dropdown</a></li>
-
-  <li><a href="/brix/gallery/inplace-editor">InplaceEditor</a></li>
-
-  <li><a href="/brix/gallery/kwicks">Kwicks</a></li>
-
-  <li><a href="/brix/gallery/loading">Loading</a></li>
-
-  <li><a href="/brix/gallery/pagination">Pagination</a></li>
-
-  <li><a href="/brix/gallery/slider">Slider</a></li>
-
-  <li><a href="/brix/gallery/starrating">StarRating</a></li>
-
-  <li><a href="/brix/gallery/switcher">Switcher</a></li>
-
-  <li><a href="/brix/gallery/tips">tips</a></li>
-
-</ul>
-</section>
-<section>
-  <h3>Tutorials</h3>
   
-  <ul class="entries">
-
-  <li><a href="/brix/tutorials/style">Brix Style开发指南</a></li>
-
-</ul>
-</section>
-
+  
 </aside>
   <div id="page">
-    <article>
-      <h1>BRIX 组件架构（一）</h1>
-      
-      
-      <section><h2>目标</h2>
+  <div class="title-bar clearfix">
+    <h1>Brix 组件架构（一）</h1>
+    
+  </div>
+  <article>
+    
+    <section class="content"><h2>目标</h2>
 
 <blockquote><p>开发者能够方便的使用平台内组件完成业务逻辑的书写</p></blockquote>
 
 <h2>基本架构理念</h2>
 
-<p><strong>BRIX和大多数组件平台差别并不大，只是有些面向我们的目标的特别重要的关键点必须更加彻底的坚持。</strong></p>
+<p><strong>Brix 和大多数组件平台差别并不大，只是有些面向我们的目标的特别重要的关键点必须更加彻底的坚持。</strong></p>
 
 <p><img src="/brix/assets/img/brix-arch/1/1.png" alt="1" /></p>
 
@@ -199,9 +125,9 @@
 无论是前台页面，后台页面，还算移动端页面皆是如此。</p>
 
 <ul>
-<li>前台页面视觉复杂，交互简单，我们打算通过模板系统，把组件行为和html结构一定程度上解耦，所以这是我们讨论mustache的原因。</li>
+<li>前台页面视觉复杂，交互简单，我们打算通过模板系统，把组件行为和 html 结构一定程度上解耦，所以这是我们讨论 mustache 的原因。</li>
 <li>后台页面交互复杂，视觉统一，我们会更多的通过规范来把组件做少，做精。</li>
-<li>移动页面对性能要求很高，我们可能不再使用kissy、jquery这样的pc类库做底层，但是我们希望保持接口一致、接驳方式一致、子组件组装方式一致。</li>
+<li>移动页面对性能要求很高，我们可能不再使用 kissy、jQuery 这样的 pc 类库做底层，但是我们希望保持接口一致、接驳方式一致、子组件组装方式一致。</li>
 </ul>
 
 
@@ -210,14 +136,11 @@
 </div>
 
 </section>
-    </article>
-  </div>
-  <div id="J_log" style="position:fixed;width:88px;height:18px;bottom:0;right:2px">
-    <a style="position:absolute;top:1px;right:1px;z-index:999;" id="J_close" href="#">显示调试窗口</a>
-  </div>
+  </article>
+</div>
   <footer id="footer">
   </footer>
   <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
-  <script src="/brix/assets/js/log4javascript.js"></script>
   <script src="/brix/assets/js/post.js"></script>
 </body>
+</html>

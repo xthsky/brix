@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+<title>Brix &mdash; UX</title>
+<!--[if lt IE 9]>
+<script>
+  // html5
+  (function() {
+      var tags = [
+          'article', 'aside', 'details', 'figcaption',
+          'figure', 'footer', 'header', 'hgroup',
+          'menu', 'nav', 'section', 'summary',
+          'time', 'mark', 'audio', 'video'],
+              i = 0, len = tags.length;
+      for (; i < len; i++) document.createElement(tags[i]);
+  })();
+</script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/brix/dist/brix-min.css">
+<link rel="stylesheet" type="text/css" href="/brix/assets/css/post.css">
+</head>
+<body>
+  <div id="site-nav">
+  <nav class="container">
+    <a href="/brix/">首页 Home</a>
+    <a href="/brix/#tutorial">入门 Tutorials</a>
+    <a href="/brix/#doc">文档 Doc</a>
+    <a href="/brix/style">样式 Style</a>
+    <a href="/brix/#about">关于 About</a>
+  </nav>
+</div>
+  <aside id="aside">
+    <div id="logo">
+      <a href="/brix/">Brix</a>
+    </div>
+    <section>
+      <h3>Core</h3>
+      
+      <ul class="entries">
+<li><a href="/brix/core/brick">Brick</a></li><li><a href="/brix/core/chunk">Chunk</a></li><li><a href="/brix/core/dataset">Dataset</a></li><li><a href="/brix/core/pagelet">Pagelet</a></li><li><a href="/brix/core/tmpler">Tmpler</a></li>
+</ul>
+    </section>
+    <section>
+      <h3>Gallery</h3>
+      
+      <ul class="entries">
+<li><a href="/brix/gallery/breadcrumbs">Breadcrumbs</a></li><li><a href="/brix/gallery/calendar">Calendar</a></li><li><a href="/brix/gallery/colorpicker">ColorPicker</a></li><li><a href="/brix/gallery/datepicker">DatePicker</a></li><li><a href="/brix/gallery/dialog">Dialog</a></li><li><a href="/brix/gallery/dropdown">Dropdown</a></li><li><a href="/brix/gallery/inplace-editor">InplaceEditor</a></li><li><a href="/brix/gallery/kwicks">Kwicks</a></li><li><a href="/brix/gallery/loading">Loading</a></li><li><a href="/brix/gallery/pagination">Pagination</a></li><li><a href="/brix/gallery/slider">Slider</a></li><li><a href="/brix/gallery/starrating">StarRating</a></li><li><a href="/brix/gallery/switcher">Switcher</a></li><li><a href="/brix/gallery/tips">tips</a></li><li><a href="/brix/gallery/sidenav">SideNav</a></li><li><a href="/brix/gallery/timer">Timer</a></li><li><a href="/brix/gallery/searchbox">Searchbox</a></li>
+</ul>
+    </section>
+  </aside>
+  <div id="page">
+  <div class="title-bar clearfix">
+    <h1>DatePicker</h1>
+    
+    <p class="caption">时间选择</p>
+    
+  </div>
+  <article>
+    
+    <section class="content"><div class='demo'><iframe src='/brix/demo/gallery/datepicker/datepicker.html' frameborder='0' scrolling='no' class='j-demo'></iframe></div>
+
+
+<h2>配置</h2>
+
+<p>包含 <a href="/brix/core/brick">Brick</a> 的所有配置</p>
+
+<h3><code>trigger</code> {String|Node}</h3>
+
+<p>触发节点</p>
+
+<h3><code>triggerType</code> {Array}</h3>
+
+<p>弹出状态下, 触发弹出日历的事件, 例如：[‘click’,’focus’],也可以直接传入’focus’, 默认为[‘click’]</p>
+
+<h3><code>align</code> {Object}</h3>
+
+<p>弹出组件对其方式</p>
+
+<div class="highlight"><pre><code class="js"> <span class="p">{</span>
+    <span class="nx">node</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
+    <span class="nx">points</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;cc&#39;</span><span class="p">,</span><span class="s1">&#39;cc&#39;</span><span class="p">],</span> <span class="c1">// [&#39;tr&#39;, &#39;tl&#39;] 表示 colorpicker 的 tl 与参考节点的 tr 对齐</span>
+    <span class="nx">offset</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>      <span class="c1">// 偏移值，有效值为 [n, m]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+<h3><code>quickDates</code> {Date}</h3>
+
+<p>快速时段选择</p>
+
+<div class="highlight"><pre><code class="js"><span class="p">{</span>
+    <span class="s1">&#39;today&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;今天&#39;</span><span class="p">,</span>
+        <span class="nx">dateRange</span><span class="o">:</span> <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()]</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;yestoday&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;昨天&#39;</span><span class="p">,</span>
+        <span class="nx">dateRange</span><span class="o">:</span> <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2011</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+<h3><code>dates</code> {Date}</h3>
+
+<p>已经选择的时间段</p>
+
+<div class="highlight"><pre><code class="js"><span class="p">{</span>
+    <span class="nx">start</span><span class="o">:</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
+    <span class="nx">end</span><span class="o">:</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+<h3><code>isQuick</code> {Boolen}</h3>
+
+<p>是否快捷日期</p>
+
+<h3><code>isCompare</code> {Boolen}</h3>
+
+<p>是否比较日期</p>
+
+<h3><code>compareText</code> {String}</h3>
+
+<p>比较的字符串</p>
+
+<h3><code>pages</code> {Date}</h3>
+
+<p>日历的页数, 默认为1, 包含一页日历</p>
+
+<h3><code>notLimited</code> {Boolen}</h3>
+
+<p>是否出现不限的按钮,默认为false</p>
+
+<h2>方法</h2>
+
+<h3><code>show()</code></h3>
+
+<p>显示日历</p>
+
+<h3><code>hide()</code></h3>
+
+<p>隐藏日历</p>
+
+<h3><code>toggle()</code></h3>
+
+<p>切换显示隐藏</p>
+
+<h2>事件</h2>
+
+<h3><code>selected(ev)</code></h3>
+
+<p>范围选择</p>
+
+<ul>
+<li>ev.start {Date} 选择的开始日期</li>
+<li>ev.end {Date} 选择的开始日期</li>
+<li>ev.isQuick {Boolen} 是否快速选择</li>
+<li>ev.quickDate {Boolen} 快速选择的数据</li>
+</ul>
+
+
+<h3><code>show()</code></h3>
+
+<p>显示</p>
+
+<h3><code>hide()</code></h3>
+
+<p>隐藏</p>
+</section>
+  </article>
+</div>
+  <footer id="footer">
+  </footer>
+  <div id="J_log" style="position:fixed;width:88px;height:18px;bottom:0;right:2px">
+    <a style="position:absolute;top:1px;right:1px;z-index:999;" id="J_close" href="#">显示调试窗口</a>
+  </div>
+  <script src="/brix/assets/js/log4javascript.js"></script>
+  <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+  <script src="/brix/assets/js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Brix &mdash; UX</title>
+  <!--[if lt IE 9]>
+<script>
+  // html5
+  (function() {
+      var tags = [
+          'article', 'aside', 'details', 'figcaption',
+          'figure', 'footer', 'header', 'hgroup',
+          'menu', 'nav', 'section', 'summary',
+          'time', 'mark', 'audio', 'video'],
+              i = 0, len = tags.length;
+      for (; i < len; i++) document.createElement(tags[i]);
+  })();
+</script>
+<![endif]-->
+  <link rel="stylesheet" type="text/css" href="/brix/dist/brix-min.css">
+  <link rel="stylesheet" type="text/css" href="/brix/assets/css/style.css">
+</head>
+<body>
+  <div id="site-nav">
+  <nav class="container">
+    <a href="/brix/">首页 Home</a>
+    <a href="/brix/#tutorial">入门 Tutorials</a>
+    <a href="/brix/#doc">文档 Doc</a>
+    <a href="/brix/style">样式 Style</a>
+    <a href="/brix/#about">关于 About</a>
+  </nav>
+</div>
+  <div id="page" class="container">
+  <h1 id="logo">
+    <a href="/brix/" class="logo">Brix</a>
+    <a href="/brix/style" class="sub">Style</a>
+  </h1>
+  <div id="page-nav" class="clearfix">
+    <nav>
+      
+      <a href="#scaffolding">Scaffolding</a>
+      <a href="#type">Type</a>
+      <a href="#grid">Grid</a>
+      <a href="#forms">Forms</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#flowsteps">flowsteps</a>
+      <a href="#tables">tables</a>
+      <a href="#tags">tags</a>
+      <a href="#avatar">Avatar</a>
+      <a href="#footer">footer</a>
+      <a href="#msg-box">msg-box</a>
+    </nav>
+  </div>
+  
+  <div class="post" id="scaffolding">
+    <div class="title-bar clearfix">
+      <h2>Scaffolding</h2>
+      
+      
+    </div>
+    <div class="content"><h3>Reset样式</h3>
+
+<p>Brix Style 的 Reset 样式直接使用了 <a href="http://necolas.github.com/normalize.css/">Normalize.css</a>，
+省心省力，效果请参考 <a href="/brix/src/style/tests/reset.html">Reset测试</a></p>
+
+<h3>工具类</h3>
+
+<div class="row show-grid">
+  <div class="span18">
+    <p>工具类可以直接在页面中使用。</p>
+  </div>
+  <div class="span32">
+  
+<div class="highlight"><pre><code class="css"><span class="nc">.clearfix</span>
+<span class="nc">.text-overflow</span>
+</code></pre>
+</div>
+
+
+  </div>
+</div>
+
+
+
+
+<h3>Mixin</h3>
+
+
+<div class="row show-grid">
+  <div class="span18">
+    <p>Brix Style 提供了许多 Mixins 来加速 Brix 组件的开发。</p>
+    <p>暂定有以下 mixin：</p>
+  </div>
+  <div class="span32">
+    
+<div class="highlight"><pre><code class="css"><span class="nc">.border-radius</span> <span class="o">(</span><span class="k">@radius</span><span class="o">)</span>
+<span class="nc">.opacity</span> <span class="o">(</span><span class="k">@opacity</span><span class="o">)</span>
+<span class="nc">.box-shadow</span> <span class="o">(</span><span class="k">@shadow</span><span class="o">)</span>
+<span class="nc">.transition</span> <span class="o">(</span><span class="k">@transition</span><span class="o">)</span>
+<span class="nf">#gradient</span> <span class="o">&gt;</span> <span class="nc">.vertical</span> <span class="o">(</span><span class="k">@startColor</span><span class="o">:</span> <span class="nf">#555</span><span class="o">,</span> <span class="k">@endColor</span><span class="o">:</span> <span class="nf">#333</span><span class="o">)</span>
+<span class="nf">#gradient</span> <span class="o">&gt;</span> <span class="nc">.striped</span> <span class="o">(</span><span class="k">@color</span><span class="o">,</span> <span class="k">@angle</span><span class="o">:</span> <span class="nt">-45deg</span><span class="o">)</span>
+<span class="nc">.ie-inline-block</span> <span class="o">()</span>
+<span class="nc">.reset-filter</span> <span class="o">()</span>
+<span class="nc">.buttonBackground</span> <span class="o">(</span><span class="k">@startColor</span><span class="o">,</span> <span class="k">@endColor</span><span class="o">)</span>
+<span class="nc">.formFieldState</span> <span class="o">(</span><span class="k">@textColor</span><span class="o">:</span> <span class="nf">#555</span><span class="o">,</span> <span class="k">@borderColor</span><span class="o">:</span> <span class="nf">#ccc</span><span class="o">,</span> <span class="k">@backgroundColor</span><span class="o">:</span> <span class="nf">#f5f5f5</span><span class="o">)</span>
+<span class="nf">#popoverArrow</span> <span class="o">&gt;</span> <span class="nc">.bottom</span> <span class="o">(</span><span class="k">@arrowWidth</span><span class="o">:</span> <span class="nt">5px</span><span class="o">,</span> <span class="k">@color</span><span class="o">:</span> <span class="k">@black</span><span class="o">)</span>
+<span class="nf">#popoverArrow</span> <span class="o">&gt;</span> <span class="nc">.right</span> <span class="o">(</span><span class="k">@arrowWidth</span><span class="o">:</span> <span class="nt">5px</span><span class="o">,</span> <span class="k">@color</span><span class="o">:</span> <span class="k">@black</span><span class="o">)</span>
+<span class="nf">#popoverArrow</span> <span class="o">&gt;</span> <span class="nc">.top</span> <span class="o">(</span><span class="k">@arrowWidth</span><span class="o">:</span> <span class="nt">5px</span><span class="o">,</span> <span class="k">@color</span><span class="o">:</span> <span class="k">@black</span><span class="o">)</span>
+<span class="nf">#popoverArrow</span> <span class="o">&gt;</span> <span class="nc">.left</span> <span class="o">(</span><span class="k">@arrowWidth</span><span class="o">:</span> <span class="nt">5px</span><span class="o">,</span> <span class="k">@color</span><span class="o">:</span> <span class="k">@black</span><span class="o">)</span>
+<span class="nf">#grid</span> <span class="o">&gt;</span> <span class="nc">.core</span> <span class="o">(</span><span class="k">@gridColumnWidth</span><span class="o">,</span> <span class="k">@gridGutterWidth</span><span class="o">)</span>
+<span class="nf">#grid</span> <span class="o">&gt;</span> <span class="nc">.fluid</span> <span class="o">(</span><span class="k">@fluidGridColumnWidth</span><span class="o">,</span> <span class="k">@fluidGridGutterWidth</span><span class="o">)</span>
+<span class="nf">#grid</span> <span class="o">&gt;</span> <span class="nc">.input</span> <span class="o">(</span><span class="k">@gridColumnWidth</span><span class="o">,</span> <span class="k">@gridGutterWidth</span><span class="o">)</span>
+</code></pre>
+</div>
+
+
+  </div>
+</div>
+
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="type">
+    <div class="title-bar clearfix">
+      <h2>Type</h2>
+      
+      <a href="/brix/demo/style/type.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h4>标题</h4>
+<h1>h1: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h1>
+<h2>h2: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h2>
+<h3>h3: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h3>
+<h4>h4: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h4>
+<h5>h5: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h5>
+<h6>h6: The quick brown fox jumps over the lazy dog 那只敏捷的棕毛狐狸跃过那只懒狗</h6>
+<br />
+
+<h4>正文</h4>
+<p>p: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<br />
+<div>div: 原先大家以为这段拉丁文只是没有意义的组合，目的是让阅读者不要被文章内容所影响，而只专注于观察字型或版型，并借此填满空间。但根据美国拉丁学者 Richard McClintock 的研究，Lorem ipsum 原来起源于西赛罗的《善恶之尽》。中译：无人爱苦，亦无人寻之欲之，乃因其苦。为了减少 Lorem ipsum 的可读性，并且让字母出现的频率与现代英语接近，所以有些版本中部分字母被 K, W, Z 等拉丁文中没有的字母替换，或是加入 zzril, takimata 等字。除了原始的 Lorem ipsum 版本外，目前还有几套新的 Lorem ipsum.</div>
+<br />
+
+<h4>价钱符号</h4>
+<ul>
+    <li><i class="rmb">&yen;</i>1980</li>
+    <li style="font-size: 14px"><i class="rmb">&yen;</i>1980</li>
+    <li style="font-size: 16px"><i class="rmb">&yen;</i>1980</li>
+    <li style="font-size: 18px"><i class="rmb">&yen;</i>1980</li>
+    <li style="font-size: 20px"><i class="rmb">&yen;</i>1980</li>
+    <li style="font-size: 24px"><i class="rmb">&yen;</i>1980</li>
+</ul>
+<br />
+<ul>
+    <li>100<i class="yuan">元</i></li>
+    <li style="font-size: 16px">3<i class="dec">.56</i><i class="yuan">元</i></li>
+    <li style="font-size: 18px">5,000<i class="dec">.00</i><i class="yuan">元</i></li>
+    <li style="font-size: 24px">5,000<i class="dec">.00</i><i class="yuan">元</i></li>
+    <li style="font-size: 30px">5,000<i class="dec">.00</i><i class="yuan">元</i></li>
+</ul>
+<br />
+
+<h4>链接颜色</h4>
+<a href="#notexist">link</a>
+<br />
+<a href="#">hover</a>
+<br />
+<a href="">visited</a>
+<br />
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="grid">
+    <div class="title-bar clearfix">
+      <h2>Grid</h2>
+      
+      <a href="/brix/demo/style/grid-fixed.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h3>50（+10） 列栅格系统</h3>
+<div class="grid-showcase">
+  <div class="row show-grid">
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+    <div class="span1">1</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+    <div class="span2">2</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span17">17</div>
+    <div class="span33">33</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span10">10</div>
+    <div class="span40">40</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span10">10</div>
+    <div class="span15">15</div>
+    <div class="span25">25</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span25">25</div>
+    <div class="span25">25</div>
+  </div>
+  <div class="row show-grid">
+    <div class="span50">50</div>
+  </div>
+  <div class="row">
+    <div class="span10">
+    <p>
+        默认的<strong>50列、990px</strong>宽度的栅格系统。
+    </p>
+    </div>
+    <!-- /.span -->
+    <div class="span15"><div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span10&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span15&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span25&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+    </div>
+    <!-- /.span -->
+    <div class="span25">
+      <p>页面被我们分割成50个基础列，你通过指定横跨多少列来控制每个区域的宽度。</p>
+    </div>
+    <!-- /.span -->
+  </div>
+</div>
+
+<h3>带有偏移量的列</h3>
+<div class="grid-showcase">
+  <div class="row show-grid">
+    <div class="span10">10</div>
+    <div class="span25 offset15">25 offset 15</div>
+  </div>
+  <!-- /row -->
+  <div class="row show-grid">
+    <div class="span33 offset17">33 offset 17</div>
+  </div>
+  <!-- /row -->
+  <div class="row">
+    <div class="span25">
+      <p>只需要给偏移列加上 <code>offset*</code></p>
+    </div>
+    <div class="span25"><div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span10&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span25 offset15&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row show-grid&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span33 offset17&quot;</span><span class="nt">&gt;</span>33 offset 17<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+  </div>
+  <!-- /row -->
+</div>
+
+<h3>嵌套列</h3>
+<div class="grid-showcase">
+  <div class="row">
+    <div class="span25">
+      <div class="row show-grid">
+          <div class="span25">
+              Level 1 of column
+              <div class="row show-grid">
+                  <div class="span10">Level 2</div>
+                  <div class="span15">Level 2</div>
+              </div>
+          </div>
+      </div>
+      <p>
+          有时我们需要在某一列中嵌套一个栅格，只需要在
+          <code>.span*</code>
+          中增加一个
+          <code>.row</code>
+          ， 并在
+          <code>.row</code>
+          中增加若干
+          <code>.span*</code>
+          。
+      </p>
+      <p>
+          嵌套行中的列横跨宽度相加必须等于其外部列的宽度。 例如：一个
+          <code>.span25</code>
+          列中可以有一个
+          <code>.span10</code>
+          列和一个
+          <code>.span15</code>
+          列。
+      </p>
+    </div>
+    <!-- /.span -->
+    <div class="span25">
+      <div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span25&quot;</span><span class="nt">&gt;</span>
+Level 1 of column
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span10&quot;</span><span class="nt">&gt;</span>Level 2<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;span15&quot;</span><span class="nt">&gt;</span>Level 2<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+    </div>
+    <!-- /.span -->
+  </div>
+  <!-- /.row -->
+</div>
+</div>
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="forms">
+    <div class="title-bar clearfix">
+      <h2>Forms</h2>
+      
+      <a href="/brix/demo/style/forms.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h4>默认样式</h4>
+<p>表单默认是水平排列的。其对应的class是.form-horizontal。</p>
+<p>每个表单控件都放在.control-group中。其中，.control-label为label标签，.controls为具体控件。</p>
+<form class="form-horizontal">
+    <legend>表单Demo</legend>
+    <div class="control-group">
+        <label class="control-label" for="input02">表单项名称:</label>
+        <div class="controls">
+            <input id="input02" placeholder="placeholder占位" />
+            <p class="help-block">说明解释类提示</p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">单选按钮:</label>
+        <div bx-name="form" class="controls">
+            <label class="radio inline">
+                <input type="radio" name="optionsRadios5" id="optionsRadio08" value="option08" checked />单点我
+            </label>
+            <label class="radio inline">
+                <input type="radio" name="optionsRadios5" id="optionsRadio09" value="option09" />别点我
+            </label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">多选按钮:</label>
+        <div bx-name="form" class="controls">
+            <label class="checkbox">
+                <input type="checkbox" name="optionsCheckbox5" id="optionsCheckbox09" value="option01" checked />1
+            </label>
+            <label class="checkbox">
+                <input type="checkbox" name="optionsCheckbox5" id="optionsCheckbox10" value="option02" />2
+            </label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">文本框:</label>
+        <div class="controls">
+            <textarea rows="3"></textarea>
+        </div>
+    </div>
+</form>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>表单Demo<span class="nt">&lt;/legend&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span> <span class="na">for=</span><span class="s">&quot;input02&quot;</span><span class="nt">&gt;</span>表单项名称:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;input02&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;placeholder占位&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;</span>说明解释类提示<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>单选按钮:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio08&quot;</span> <span class="na">checked</span> <span class="nt">/&gt;</span>单点我
+            <span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio09&quot;</span> <span class="nt">/&gt;</span>别点我
+            <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>多选按钮:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox09&quot;</span> <span class="na">checked</span> <span class="nt">/&gt;</span>1
+            <span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox10&quot;</span> <span class="nt">/&gt;</span>2
+            <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>文本框:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;textarea</span> <span class="na">rows=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h4>表单控件的状态</h4>
+<h5>禁用状态</h5>
+<form class="form-horizontal">
+    <div class="control-group disabled">
+        <label class="control-label" for="input04">表单项名称:</label>
+        <div class="controls">
+            <input id="input04" class="disabled" disabled placeholder="placeholder占位" />
+        </div>
+    </div>
+    <label class="control-label">单选按钮:</label>
+    <div bx-name="form" class="controls">
+        <label class="radio inline disabled">
+            <input type="radio" name="optionsRadios4" id="optionsRadio06" value="option06" disabled />已禁用
+        </label>
+        <label class="radio inline checked-disabled">
+            <input type="radio" name="optionsRadios4" id="optionsRadio07" value="option07" checked disabled />已禁用
+        </label>
+    </div>
+    <label class="control-label">多选按钮:</label>
+    <div bx-name="form" class="controls">
+        <label class="checkbox inline disabled">
+            <input type="checkbox" name="optionsCheckbox2" id="optionsCheckbox03" value="option03" disabled />3
+        </label>
+        <label class="checkbox inline checked-disabled">
+            <input type="checkbox" name="optionsCheckbox2" id="optionsCheckbox04" value="option04" checked disabled />4
+        </label>
+    </div>
+</form>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group disabled&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span> <span class="na">for=</span><span class="s">&quot;input04&quot;</span><span class="nt">&gt;</span>表单项名称:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;input04&quot;</span> <span class="na">class=</span><span class="s">&quot;disabled&quot;</span> <span class="na">disabled</span> <span class="na">placeholder=</span><span class="s">&quot;placeholder占位&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>单选按钮:<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline disabled&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio06&quot;</span> <span class="na">disabled</span> <span class="nt">/&gt;</span>已禁用
+        <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline checked-disabled&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio07&quot;</span> <span class="na">checked</span> <span class="na">disabled</span> <span class="nt">/&gt;</span>已禁用
+        <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>多选按钮:<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox inline disabled&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox03&quot;</span> <span class="na">disabled</span> <span class="nt">/&gt;</span>3
+        <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox inline checked-disabled&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox04&quot;</span> <span class="na">checked</span> <span class="na">disabled</span> <span class="nt">/&gt;</span>4
+        <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h5>验证状态</h5>
+<form class="form-horizontal">
+    <div class="control-group error">
+        <label class="control-label" for="input03">表单项名称:</label>
+        <div class="controls">
+            <input id="input03" placeholder="placeholder占位" value="妈妈说这样是不对的" />
+            <p class="help-block">说明解释类提示</p>
+        </div>
+    </div>
+</form>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;control-group error&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span> <span class="na">for=</span><span class="s">&quot;input03&quot;</span><span class="nt">&gt;</span>表单项名称:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;input03&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;placeholder占位&quot;</span> <span class="na">value=</span><span class="s">&quot;妈妈说这样是不对的&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;</span>说明解释类提示<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h4>其它：垂直表单样式</h4>
+<form class="well">
+    <legend>垂直表单Demo</legend>
+    <label class="control-label" for="input01">输入框:</label>
+    <input id="input01" placeholder="placeholder占位" value="文字" />
+    <span class="help-block">说明/提示文字</span>
+    <label class="control-label">单选按钮:</label>
+    <div bx-name="form" class="controls">
+        <label class="radio inline">
+            <input type="radio" name="optionsRadios2" id="optionsRadio03" value="option03" checked />单点我
+        </label>
+        <label class="radio inline">
+            <input type="radio" name="optionsRadios2" id="optionsRadio04" value="option04" />别点我
+        </label>
+    </div>
+    <label class="control-label">多选按钮:</label>
+    <div bx-name="form" class="controls">
+        <label class="checkbox inline">
+            <input type="checkbox" name="optionsCheckbox3" id="optionsCheckbox05" value="option03" />3
+        </label>
+        <label class="checkbox inline">
+            <input type="checkbox" name="optionsCheckbox3" id="optionsCheckbox06" value="option04" checked />4
+        </label>
+    </div>
+</form>
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;well&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>垂直表单Demo<span class="nt">&lt;/legend&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span> <span class="na">for=</span><span class="s">&quot;input01&quot;</span><span class="nt">&gt;</span>输入框:<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;input01&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;placeholder占位&quot;</span> <span class="na">value=</span><span class="s">&quot;文字&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;help-block&quot;</span><span class="nt">&gt;</span>说明/提示文字<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>单选按钮:<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio03&quot;</span> <span class="na">checked</span> <span class="nt">/&gt;</span>单点我
+        <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;radio inline&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsRadio04&quot;</span> <span class="nt">/&gt;</span>别点我
+        <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;control-label&quot;</span><span class="nt">&gt;</span>多选按钮:<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;form&quot;</span> <span class="na">class=</span><span class="s">&quot;controls&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox inline&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox05&quot;</span> <span class="nt">/&gt;</span>3
+        <span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;checkbox inline&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id=</span><span class="s">&quot;optionsCheckbox06&quot;</span> <span class="na">checked</span> <span class="nt">/&gt;</span>4
+        <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="buttons">
+    <div class="title-bar clearfix">
+      <h2>Buttons</h2>
+      
+      <a href="/brix/demo/style/buttons.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h3>Simple Buttons</h3>
+<p>a, input, button。考虑IE67，不建议a与input或button混用</p>
+<a href="#" class="btn btn-red btn-xlarge">红色</a>
+<input type="button" class="btn btn-red btn-xlarge" value="红色" />
+<button class="btn btn-xlarge">默认</button>
+
+<p>.btn-xlarge / .btn-size45</p>
+<a href="#" class="btn btn-red btn-xlarge">红色</a>
+<a href="#" class="btn btn-orange btn-xlarge">橙色</a>
+<a href="#" class="btn btn-blue btn-xlarge">蓝色</a>
+<a href="#" class="btn btn-xlarge">默认</a>
+<a class="btn btn-disabled btn-xlarge">禁用</a>
+
+<p>.btn-large / .btn-size40</p>
+<a href="#" class="btn btn-red btn-large">红色</a>
+<a href="#" class="btn btn-orange btn-large">橙色</a>
+<a href="#" class="btn btn-blue btn-large">蓝色</a>
+<a href="#" class="btn btn-large">默认</a>
+<a class="btn btn-disabled btn-large">禁用</a>
+
+<p>.btn-medium / .btn-size30</p>
+<a href="#" class="btn btn-red btn-medium">红色</a>
+<a href="#" class="btn btn-orange btn-medium">橙色</a>
+<a href="#" class="btn btn-blue btn-medium">蓝色</a>
+<a href="#" class="btn btn-medium">默认</a>
+<a class="btn btn-medium btn-disabled">禁用</a>
+
+<p>.btn-small / .btn-size28</p>
+<a href="#" class="btn btn-red btn-small">红色</a>
+<a href="#" class="btn btn-orange btn-small">橙色</a>
+<a href="#" class="btn btn-blue btn-small">蓝色</a>
+<a href="#" class="btn btn-small">默认</a>
+<a class="btn btn-disabled btn-small">禁用</a>
+
+<p>.btn-xsmall / .btn-size25</p>
+<a href="#" class="btn btn-red btn-xsmall">红色</a>
+<a href="#" class="btn btn-orange btn-xsmall">橙色</a>
+<a href="#" class="btn btn-blue btn-xsmall">蓝色</a>
+<a href="#" class="btn btn-xsmall">默认</a>
+<a class="btn btn-disabled btn-xsmall">禁用</a>
+
+<p>Default Size (23px)</p>
+<a href="#" class="btn btn-red">红色</a>
+<a href="#" class="btn btn-orange">橙色</a>
+<a href="#" class="btn btn-blue">蓝色</a>
+<a href="#" class="btn">默认</a>
+<a class="btn btn-disabled">禁用</a>
+
+<h3>Group Buttons</h3>
+<div class="btn-group">
+    <a href="#" class="btn btn-medium">刷新</a><a href="#" class="btn btn-medium">个人设定</a><a href="#" class="btn btn-medium">退出</a>
+</div>
+<br>
+<div class="btn-group">
+    <a href="#" class="btn btn-blue btn-medium">刷新</a><a href="#" class="btn btn-blue btn-medium">个人设定</a><a href="#" class="btn btn-blue btn-medium">退出</a>
+</div>
+
+<h3>Icon in Button</h3>
+<a href="#" class="btn btn-xlarge btn-orange"><i class="iconfont">Ơ</i> 系统升级</a>
+<a href="#" class="btn btn-xlarge btn-orange btn-disabled"><i class="iconfont">Ơ</i> 系统升级</a>
+<a href="#" class="btn btn-large"><i class="iconfont">ő</i> Search</a>
+<a href="#" class="btn btn-red btn-medium"><i class="iconfont">ŭ</i> 加入购物车</a>
+<a href="#" class="btn btn-small"><i class="iconfont">ţ</i> 个人设置</a>
+<a href="#" class="btn btn-xsmall btn-blue"><i class="iconfont">ŝ</i> 发送私信</a>
+<a class="btn btn-disabled"><i class="iconfont">ŝ</i> 发送私信</a>
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="flowsteps">
+    <div class="title-bar clearfix">
+      <h2>flowsteps</h2>
+      
+      <a href="/brix/demo/style/flowsteps.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h3>步骤条一</h3>
+<div bx-name="flowsteps" class="flowsteps">
+    <ol class="clearfix">
+        <li class="flowsteps-item flowsteps-item-done"><i class="flowsteps-icon">&#435</i><b>1</b><span>选择宝贝</span></li>
+        <li class="flowsteps-item flowsteps-item-current"><i class="flowsteps-icon">&#435</i><b>2</b><span>编辑推广内容并设置</span>
+        </li>
+        <li class="flowsteps-item"><i class="flowsteps-icon">&#435</i><b>3</b><span>完成</span></li>
+    </ol>
+</div>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;flowsteps&quot;</span> <span class="na">class=</span><span class="s">&quot;flowsteps&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">&quot;clearfix&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item flowsteps-item-done&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;b&gt;</span>1<span class="nt">&lt;/b&gt;&lt;span&gt;</span>选择宝贝<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item flowsteps-item-current&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;b&gt;</span>2<span class="nt">&lt;/b&gt;&lt;span&gt;</span>编辑推广内容并设置<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;b&gt;</span>3<span class="nt">&lt;/b&gt;&lt;span&gt;</span>完成<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ol&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+
+
+<h3>步骤条二</h3>
+<div bx-name="flowsteps" class="flowsteps-small">
+    <ol class="clearfix">
+        <li class="flowsteps-item flowsteps-item-done"><i class="flowsteps-icon">&#435</i><b></b><span>提交订单</span></li>
+        <li class="flowsteps-item flowsteps-item-current"><i class="flowsteps-icon">&#470</i><b></b><span>商品出库</span></li>
+        <li class="flowsteps-item"><i class="flowsteps-icon">&#435</i><b></b><span>等待收货</span></li>
+        <li class="flowsteps-item flowsteps-item-last"><i class="flowsteps-icon">&#435</i><span>完成</span></li>
+    </ol>
+</div>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">bx-name=</span><span class="s">&quot;flowsteps&quot;</span> <span class="na">class=</span><span class="s">&quot;flowsteps-small&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">&quot;clearfix&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item flowsteps-item-done&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;span&gt;</span>提交订单<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item flowsteps-item-current&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#470<span class="nt">&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;span&gt;</span>商品出库<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;span&gt;</span>等待收货<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;flowsteps-item flowsteps-item-last&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;flowsteps-icon&quot;</span><span class="nt">&gt;</span><span class="err">&amp;</span>#435<span class="nt">&lt;/i&gt;&lt;span&gt;</span>完成<span class="nt">&lt;/span&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ol&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="tables">
+    <div class="title-bar clearfix">
+      <h2>tables</h2>
+      
+      <a href="/brix/demo/style/tables.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"></div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="tags">
+    <div class="title-bar clearfix">
+      <h2>tags</h2>
+      
+      <a href="/brix/demo/style/tags.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><h3>无标签标题</h3>
+    <ul class="tags-list clearfix">
+        <li><a href="#">全部</a></li>
+        <li><a href="#">雪纺</a></li>
+        <li><a href="#">小清新</a></li>
+        <li><a href="#">甜美</a></li>
+        <li class="current"><a href="#">韩系</a></li>
+        <li><a href="#">牛仔衬衫</a></li>
+        <li><a href="#">牛仔衬衫</a></li>
+        <li><a href="#">牛仔衬衫</a></li>
+        <li><a href="#">牛仔衬衫</a></li>
+    </ul>
+
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="avatar">
+    <div class="title-bar clearfix">
+      <h2>Avatar</h2>
+      
+      <a href="/brix/demo/style/avatar.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><div class="highlight"><pre><code class="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;avatar&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;avatar-rim&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;avatar-pic&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;/brix/demo/style/assets/avatar/gal.jpg&quot;</span> <span class="na">alt=</span><span class="s">&quot;avatar-default&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+</div>
+
+
+<div class="row avatar-showcase">
+  <div class="span16">
+    <h3>普通尺寸头像</h3>
+    <div class="avatar-showcase-column">
+      <p>普通样式</p>
+      <a href="#" onclick="return false" class="avatar">
+        <span class="avatar-rim"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal.jpg" alt="avatar-default">
+        </span>
+      </a>
+      <p>普通样式-高亮</p>
+      <a href="#" onclick="return false" class="avatar">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal.jpg" alt="avatar-default">
+        </span>
+      </a>
+      <p>带标签的普通头像</p>
+      <a href="#" onclick="return false" class="avatar avatar-has-label">
+        <span class="avatar-rim"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal.jpg" alt="avatar-default">
+        </span>
+      </a>
+      <p>带标签的普通头像-高亮</p>
+      <a href="#" onclick="return false" class="avatar avatar-has-label">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal.jpg" alt="avatar-default">
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="span16 offset1">
+    <h3>mini型头像</h3>
+    <div class="avatar-showcase-column">
+      <p>普通小头像</p>
+      <a href="#" onclick="return false" class="avatar-min">
+        <span class="avatar-rim"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal-min.png" alt="avatar-default">
+        </span>
+      </a>
+      <p>普通小头像-高亮</p>
+      <a href="#" onclick="return false" class="avatar-min">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal-min.png" alt="avatar-default">
+        </span>
+      </a>
+      <p>带标签的小头像</p>
+      <a href="#" onclick="return false" class="avatar-min avatar-min-label">
+        <span class="avatar-rim"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal-min.png" alt="avatar-default">
+        </span>
+      </a>
+      <p>带标签的小头像-高亮</p>
+      <a href="#" onclick="return false" class="avatar-min avatar-min-label">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal-min.png" alt="avatar-default">
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="span16 offset1">
+    <h3>坐标头像</h3>
+    <div class="avatar-showcase-column">
+      <a href="#" onclick="return false" class="avatar-point">
+        <span class="avatar-rim"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/gal.jpg" alt="avatar-default">
+        </span>
+      </a>
+      <h3>默认男</h3>
+      <a href="#" onclick="return false" class="avatar">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/default_man.png" alt="avatar-default">
+        </span>
+      </a>
+      <h3>默认女</h3>
+      <a href="#" onclick="return false" class="avatar">
+        <span class="avatar-rim avatar-active"></span>
+        <span class="avatar-pic">
+          <img src="/brix/demo/style/assets/avatar/default_woman.png" alt="avatar-default">
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="footer">
+    <div class="title-bar clearfix">
+      <h2>footer</h2>
+      
+      <a href="/brix/demo/style/footer.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><div class="footer">
+    <div class="common">
+        <a target="_blank" href="http://www.etao.com/whyetao.html">关于一淘</a>
+        <a target="_blank" href=" http://www.etao.com/law.html?spm=1002.1.0.276">免责声明</a>
+        <a target="_blank" href=" http://www.etao.com/go/act/phone/download.php?spm=1002.1.0.277">手机一淘</a>
+        <a target="_blank" href="http://ruyi.etao.com/">如意淘</a>
+        <a target="_blank" href="http://www.tao123.com/">淘网址</a>
+        <a target="_blank" href="http://8.etao.com/yitao/bar-658273-0-14-1-list.htm">意见反馈</a>
+        <a target="_blank" href="http://s.etao.com/help.php">帮助中心</a>
+        <a target="_blank" href="http://job.taobao.com/zhaopin/list.php?q=&amp;division=%E4%B8%80%E6%B7%98&amp;location=&amp;fc=&amp;sc=&amp;tc=&amp;type=&amp;page=1">诚聘英才</a>
+        <a target="_blank" class="last-link" href="http://open.etao.com/">商家入驻</a>
+    </div>
+    <div class="corp">
+        <a target="_blank" class="corp-name" href="http://page.china.alibaba.com/shtml/about/ali_group1.shtml">阿里巴巴集团 :</a>
+        <span class="corp-network">阿里巴巴网络</span>
+        <span class="sep">-</span>
+        <a target="_blank" class="nosplit" href="http://www.alibaba.com/">国际站</a>
+        <a target="_blank" class="nosplit" href="http://china.alibaba.com/">中文站</a>
+        <a target="_blank" class="split" href="http://seller.aliexpress.com/">全球速卖通</a>
+        <a target="_blank" class="split" href="http://www.taobao.com/">淘宝网</a>
+        <a target="_blank" class="split" href="http://www.tmall.com/">天猫</a>
+        <a target="_blank" class="split" href="http://www.etao.com/">一淘</a>
+        <a target="_blank" class="split" href="http://www.aliyun.com/">聚划算</a>
+        <a target="_blank" class="split" href="http://www.aliyun.com/">阿里云</a>
+        <a target="_blank" class="split" href="http://cn.yahoo.com/">中国雅虎</a>
+        <a target="_blank" class="last-link" href="https://www.alipay.com/">支付宝</a>
+    </div>
+    <div class="copyright">
+        <span class="copyright-sign"><span class="char-num">Copyright © 2010-2012&nbsp;ETAO.COM&nbsp;</span>版权所有</span><span class="copyright-no">增值电信业务经营许可证<b class="char-num">&nbsp;:&nbsp;</b>浙<span class="char-num">B2-20080204</span></span>
+    </div>
+</div>
+</div>
+  </div>
+  <hr class="soften"/>
+  
+  <div class="post" id="msg-box">
+    <div class="title-bar clearfix">
+      <h2>msg-box</h2>
+      
+      <a href="/brix/demo/style/msg-box.html" class="demo-link" target="_blank">Demo</a>
+      
+      
+    </div>
+    <div class="content"><div class="msg-box">
+                <div class="msg-body">
+                    今天接到警方电话，劫走老罗英语学员手机的劫匪已抓获，<br>
+                    该犯为惯犯，律师说应为三年左右有期徒刑。<br>
+                    感谢北京警方，感谢@平安北京 。这件事的教训是：<br>
+                    1.生存艰难也不要靠打劫和伤害无辜为生；<br>
+                    2.如果一定要打劫，不要打劫老罗的人。<br>
+                    3.求职也罢，上培训学校也罢，要相信那些能罩得住、也愿意为你出头的人。
+                </div>
+                <span class="msg-arrow"><span></span></span>
+            </div>
+            <span class="span"></span>
+            <div class="msg-box msg-arrow-top">
+                <p class="msg-body">左上角的气泡样式</p>
+                <span class="msg-arrow"><span></span></span>
+            </div>
+            <span class="span"></span>
+            <div class="msg-box msg-arrow-right">
+                <p class="msg-body">右上角的气泡样式</p>
+                <span class="msg-arrow"><span></span></span>
+            </div>
+            <span class="span"></span>
+            <div class="msg-box msg-arrow-bottom">
+                <p class="msg-body">右下角的气泡样式</p>
+                <span class="msg-arrow"><span></span></span>
+            </div></div>
+  </div>
+  <hr class="soften"/>
+  
+</div>
+<script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+<script src="/brix/assets/js/style.js" type="text/javascript"></script>
+
+</body>
+</html>
